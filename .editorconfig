@@ -1,0 +1,17 @@
+root = true
+
+[*]
+	indent_style = tab
+	indent_size = 2
+	charset = "utf-8"
+
+[*.(js, css)]
+	end_of_line= lf
+	trim_trailing_whitespace = true
+	insert_final_newline = true
+	curly_bracket_next_line = true
+
+[*.min.*]
+	indent_style = ignore
+	trim_trailing_whitespace = false
+	insert_final_newline = ignore

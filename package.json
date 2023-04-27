@@ -1,0 +1,42 @@
+{
+	"name": "my-webpack-project",
+	"version": "1.0.0",
+	"description": "My webpack project",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack --mode=production --config webpack.config.js",
+		"build:dev": "webpack --mode=development --config webpack.config.js",
+		"watch": "webpack --watch",
+		"serve": "webpack serve"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Tryd0g0lik/async_await_netologe.git"
+	},
+	"author": "Tryd0g0lik",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Tryd0g0lik/async_await_netologe/issues"
+	},
+	"homepage": "https://github.com/Tryd0g0lik/async_await_netologe#readme",
+	"devDependencies": {
+		"@babel/cli": "^7.21.0",
+		"@babel/core": "^7.21.4",
+		"@babel/plugin-transform-modules-commonjs": "^7.21.2",
+		"@babel/preset-env": "^7.21.4",
+		"@webpack-cli/generators": "^3.0.2",
+		"babel-jest": "^29.5.0",
+		"babel-loader": "^9.1.2",
+		"eslint": "^8.39.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-webpack-plugin": "^4.0.1",
+		"jest": "^29.5.0",
+		"prettier": "^2.8.8",
+		"request": "^2.88.2",
+		"webpack": "^5.81.0",
+		"webpack-cli": "^5.0.2",
+		"webpack-dev-server": "^4.13.3"
+	}
+}
