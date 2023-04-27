@@ -17,7 +17,7 @@ module.exports = {
   rules: {
     "no-sequences": 0,
     "no-undef": 0,
-    "indent": ["error", 2],
+    "indent": 0,
     "no-unused-expressions": 0,
     "class-methods-use-this": 0,
     "import/no-named-default": 0,

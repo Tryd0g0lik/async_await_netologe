@@ -2,6 +2,7 @@
 
 const path = require("path");
 const EslintPlugin = require("eslint-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 var request = require('request');
 var webpack = require('webpack');
 // const isProduction = process.env.NODE_ENV == "production";
@@ -20,14 +21,20 @@ module.exports = {
 	},
 	plugins: [
 		new EslintPlugin({
-			overrideConfigField: path.resolve(__dirname, ".eslintrc.js"),
+      overrideConfigFile: path.resolve(__dirname, ".eslintrc.js"),
 			files: path.resolve(__dirname, "./src/js/"),
 		}),
-		new HTMLWebpackPlugin({
+    new HtmlWebpackPlugin({
 			minify: {
 				collapseWhitespace: false,
-			}
-		})
+      }
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        minimize: true,
+
+      }
+    })
 		// Add your plugins here
 		// Learn more about plugins from https://webpack.js.org/configuration/plugins/
 	],
@@ -39,7 +46,11 @@ module.exports = {
 				use: {
 					loader: "babel-loader",
 				},
-			},
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        type: "asset",
+      },
 			// Add your rules for custom modules here
 			// Learn more about loaders from https://webpack.js.org/loaders/
 		],
@@ -47,9 +58,13 @@ module.exports = {
 	resolve: {
 		extensions: ['.js', '.jsx'],
 		modules: [
-			"node_modules",
+      "node_modules",
+      'bower_components',
 		]
-	}
+  },
+  stats: {
+    children: true
+  }
 };
 
 // module.exports = () => {

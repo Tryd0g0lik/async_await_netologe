@@ -4,36 +4,36 @@ import { default as json } from './parser';
 
 export default class GameSavingLoader {
   load() {
-    return async () => {
-      const resp = read();
-      return resp;
-    };
+    return (async () => {
+      try {
+        const resp = await read();
+        return resp;
+      } catch (err) {
+        return new Error(err.message);
+      }
+    })();
   }
 
   parsing(datas) {
-    return async () => {
+    return (async () => {
       try {
-        const response = json(datas);
+        const response = await json(datas);
         return response;
       } catch (err) {
         return new Error(err.message);
       }
-    }
+    })();
   }
 }
-const response = new GameSavingLoader();
 
-async function pushung() {
-  let respLoad = null;
-  try {
-    respLoad = await response.load();
-  } catch (err) {
-    return new Error(`ERROR: ${message.err}`);
-  } try {
-    const result = await parsing(respLoad);
+
+function pushung() {
+  const response = new GameSavingLoader();
+  return (async () => {
+    const respLoad = await response.load();
+
+    const result = await response.parsing(respLoad);
     return result;
-  } catch (er) {
-    return new Error(`ERROR: ${massege.err}`);
-  }
+  })();
 }
 pushung();
