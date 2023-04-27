@@ -14,7 +14,13 @@ module.exports = {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
 	},
-	rules: {
+  rules: {
+    "no-sequences": 0,
+    "no-undef": 0,
+    "indent": ["error", 2],
+    "no-unused-expressions": 0,
+    "class-methods-use-this": 0,
+    "import/no-named-default": 0,
 		"linebreak-style": [
 			"error",
 			"windows"
