@@ -1,28 +1,20 @@
-import { default as read } from './reader';
-import { default as json } from './parser';
+import { default as read } from './reader.js';
+import { default as json } from './parser.js';
 
 
 export default class GameSavingLoader {
   load() {
+    // const response =
     return (async () => {
-      try {
-        const resp = await read();
-        return resp;
-      } catch (err) {
-        return new Error(err.message);
-      }
+      // try {
+      const resp = await read();
+      const respone = await json(resp);
+      return respone;
+      // } catch (e) {
+      //   throw (e.message);
+      // }
     })();
-  }
-
-  parsing(datas) {
-    return (async () => {
-      try {
-        const response = await json(datas);
-        return response;
-      } catch (err) {
-        return new Error(err.message);
-      }
-    })();
+    // return response;
   }
 }
 
@@ -30,10 +22,26 @@ export default class GameSavingLoader {
 function pushung() {
   const response = new GameSavingLoader();
   return (async () => {
-    const respLoad = await response.load();
+    class GameSaving {
+      constructor(answer) {
+        this.ind = answer.id;
+        this.createds = answer.created;
+        this.userInfos = {
+          "id": answer.userInfo.id,
+          "name": answer.userInfo.name,
+          "Hitman": answer.userInfo.Hitman,
+          "level": answer.userInfo.level,
+          "points": answer.userInfo.points,
+        };
+      }
+    };
 
-    const result = await response.parsing(respLoad);
-    return result;
+    const ans = await response.load();
+    const newAns = JSON.parse(ans);
+    const objClassGameSaving = new GameSaving(newAns);
+    console.log("=======>>", objClassGameSaving)
+
+    return objClassGameSaving
   })();
 }
 pushung();
